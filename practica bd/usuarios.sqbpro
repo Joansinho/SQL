@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/joaaa/Desktop/SQL/practica bd/usuarios.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="461"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainUsuarios"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">INSERT INTO Usuarios (nombre, apellido, edad)
+VALUES	 ('Andres', 'Garcia', 18),
+		 ('Gabriel', 'Marquez', 30),
+		 ('Pepito', 'Perez', 50);
+		</sql><sql name="SQL 4">CREATE TABLE Avion (
+  año_fabricacion INT NOT NULL,
+  num_serie INT NOT NULL,
+  placa VARCHAR(30) NOT NULL PRIMARY KEY,
+  estado_mantenimiento VARCHAR(30) NOT NULL,
+  aerolinea_propietaria VARCHAR(15) NOT NULL,
+  modelo CHAR(10) NOT NULL
+);
+
+CREATE TABLE Tiquete (
+  fecha_emision DATE,
+  id_tiquete INT,
+  precio DECIMAL(10, 2),
+  estado_tiquete VARCHAR(20),
+  fecha_viaje DATE,
+  num_asientos INT,
+  clase VARCHAR(10),
+  num_sala INT,
+  destino VARCHAR(50)
+);
+
+CREATE TABLE Pasajero (
+  telefono VARCHAR(15),
+  nombre VARCHAR(50),
+  apellido VARCHAR(50),
+  nacionalidad VARCHAR(50),
+  edad INT,
+  pasaporte VARCHAR(20),
+  visa VARCHAR(20),
+  id_pasajero INT
+);
+
+CREATE TABLE Equipaje (
+  peso DECIMAL(10, 2),
+  cantidad INT,
+  propietario VARCHAR(50),
+  estado_equipaje VARCHAR(20),
+  num_etiqueta VARCHAR(30),
+  vuelo_asociado VARCHAR(20),
+  id_equipaje INT
+);
+
+CREATE TABLE Pista (
+  id_pista INT,
+  disponibilidad VARCHAR(10),
+  tipo VARCHAR(50),
+  longitud DECIMAL(10, 2),
+  numero INT,
+  estado_uso VARCHAR(20),
+  anchura DECIMAL(10, 2)
+);
+CREATE TABLE Vuelo (
+    estado_vuelo VARCHAR(20),
+    num_vuelo VARCHAR(15),
+    tipo_vuelo VARCHAR(20),
+    duracion TIME,
+    origen VARCHAR(50),
+    destino VARCHAR(50),
+    horario DATETIME
+);
+CREATE TABLE Tripulacion (
+    tipo VARCHAR(20),
+    id INT,
+    cargo VARCHAR(50) PRIMARY KEY
+);
+CREATE TABLE Ruta (
+    distancia FLOAT,
+    destino VARCHAR(50),
+    origen VARCHAR(50),
+    duracion_estimada TIME,
+    paises_sobrevolados VARCHAR(100),
+    aeropuerto_origen VARCHAR(50),
+    aeropuerto_destino VARCHAR(50),
+    id_ruta INT PRIMARY KEY
+);
+CREATE TABLE Sala (
+    terminal VARCHAR(50),
+    tipo_puerta VARCHAR(20),
+    hora_disponibilidad DATETIME,
+    capacidad INT,
+    estado VARCHAR(20),
+    aerolineas_asignadas VARCHAR(100),
+    num_puerta INT,
+    ubicacion VARCHAR(50),
+    num_sala INT PRIMARY KEY
+);
+
+CREATE TABLE Aerolinea (
+  nombre_aerolinea VARCHAR(50),
+  pais VARCHAR(30),
+  id_aerolinea INT PRIMARY KEY
+  );
+
+INSERT INTO Avion (año_fabricacion, num_serie, placa, estado_mantenimiento, aerolinea_propietaria, modelo)
+VALUES	(2019, 123456,'ABCDFG', 'En mantenimiento', 'Avianca', 'Boeing'),
+	(2020, 654321,'DEFABC', 'Excelente', 'Avianca', 'Airbus'),
+        (2018, 67890, 'GHIASD', 'Bueno', 'Avianca', 'Bombardier'),
+        (2017, 24680, 'JKLELS', 'Bueno', 'Avianca', 'Embraer'),
+        (2020, 35790, 'MNOMNC', 'Excelente', 'Avianca', 'ATR 72-600'),
+        
+        (2021, 346801, 'PQRMAS', 'Excelente', 'Latam Airlines', 'Cessna Citation'),
+        (2022, 57902, 'TUVSAD', 'Bueno', 'Latam Airlines', 'Dassault Falcon 8X '),
+        (2019, 68013, 'VWXDAS', 'Excelente', 'Latam Airlines', 'Gulfstream G600'),
+        (2017, 79124, 'YZALDI', 'En mantenimiento', 'Latam Airlines', 'Bombardier Challenger'),
+        (2020, 80235, 'ABCBUC', 'Excelente', 'Latam Airlines', 'Bombardier Challenger'),
+        
+        (2018, 91346, 'DEFBEU', 'Excelente', 'Emirates Airlines', 'Daher TBM 910 '),
+        (2021, 10457, 'GHIEAS', 'Bueno', 'Emirates Airlines', 'Cirrus SR22'),
+        (2019, 11568, 'JKLESD', 'Excelente', 'Emirates Airlines', 'Piper Archer DX'),
+        (2020, 12679, 'MNOBCV', 'Bueno', 'Emirates Airlines', 'Diamond DA40 Tundra '),
+        (2017, 13780, 'PQRSTRR', 'En mantenimiento', 'Emirates Airlines', 'Tecnam P2008 '),
+        
+        (2021, 14891, 'TUVLMN', 'Excelente', 'Qtar Airlines', 'AT-802'),
+        (2018, 15902, 'VWXOES', 'En mantenimiento', 'Aqtar Airlines', 'Bandeirante'),
+        (1950, 16013, 'YZAEST', 'Regular', 'Qtar Airlines', 'An-2'),
+        (1970, 17124, 'ABCNOR','Pobre', 'Qtar Airlines', '707'),
+        (1942, 18235, 'DEFSUR', 'Pobre', 'Qtar Airlines', 'DC-3'),
+        
+        (1954, 19346, 'GHI012', 'Muy pobre', 'Helistar', 'L-1049'),
+        (1986, 20457, 'JKL234', 'Pobre', 'Helistar', 'Tu-154'),
+        (1967, 21568, 'MNO456', 'Muy pobre', 'Helistar', 'Il-18'),
+        (1962, 22679, 'PQRS789', 'Regular', 'Helistar', 'Trident'),
+        (19464, 23780, 'TUV103', 'Pobre', 'Helistar', 'SML-946');
+
+INSERT INTO Tiquete (fecha_emision, id_tiquete, precio, estado_tiquete, fecha_viaje, num_asientos, clase, num_sala, destino)
+VALUES
+	('2024-05-07', 1, 250000, 'Retrasado', '2024-05-07', 1, 'Vuelo nacional', 10, 'Bogotá'),
+ 	('2024-05-07', 2, 300000, 'Retrasado', '2024-05-07', 2, 'Vuelo nacional', 11, 'Barranquilla'),
+ 	('2024-05-07', 3, 220000, 'Retrasado', '2024-05-07', 1, 'Vuelo nacional', 12, 'Bogotá'),
+  	('2024-05-07', 4, 280000, 'Retrasado', '2024-05-07', 2, 'Vuelo nacional', 13, 'Barranquilla'),
+  	('2024-05-07', 5, 230000, 'Retrasado', '2024-05-07', 1, 'Vuelo nacional', 14, 'Bogotá'),
+		
+        ('2024-05-07', 1, 250000, 'Aterrizado', '2024-05-07', 3, 'Vuelo internacional', 10, 'Ciudad de mexico'),
+	('2024-05-07', 2, 300000, 'Aterrizado', '2024-05-07', 3, 'Vuelo internacional', 11, 'Ciudad de mexico'),
+	('2024-05-07', 3, 220000, 'Aterrizado', '2024-05-07', 3, 'Vuelo internacional', 12, 'Ciudad de mexico'),
+	('2024-05-07', 4, 280000, 'Aterrizado', '2024-05-07', 3, 'Vuelo internacional', 13, 'Ciudad de mexico'),
+	('2024-05-07', 5, 230000, 'Aterrizado', '2024-05-07', 3, 'Vuelo internacional', 14, 'Ciudad de mexico'),
+        
+        ('2024-05-07', 6, 250000, 'Volando', '2024-05-07', 3, 'Vuelo internacional', 10, 'Ciudad de mexico'),
+	('2024-05-07', 7, 300000, 'Volando', '2024-05-07', 3, 'Vuelo internacional', 11, 'Ciudad de mexico'),
+	('2024-05-07', 8, 220000, 'Volando', '2024-05-07', 3, 'Vuelo internacional', 12, 'Ciudad de mexico'),
+	('2024-05-07', 9, 280000, 'Volando', '2024-05-07', 3, 'Vuelo internacional', 13, 'Ciudad de mexico'),
+	('2024-05-07', 10, 230000, 'Volando', '2024-05-07', 3, 'Vuelo internacional', 14, 'Ciudad de mexico'),
+        
+        ('2024-05-07', 11, 250000, 'Cancelado', '2024-05-07', 3, 'Vuelo internacional', 10, 'Montevideo'),
+	('2024-05-07', 12, 300000, 'Cancelado', '2024-05-07', 3, 'Vuelo internacional', 11, 'Montevideo'),
+	('2024-05-07', 13, 220000, 'Cancelado', '2024-05-07', 3, 'Vuelo internacional', 12, 'Montevideo'),
+	('2024-05-07', 14, 280000, 'Cancelado', '2024-05-07', 3, 'Vuelo internacional', 13, 'Montevideo'),
+	('2024-05-07', 15, 230000, 'Cancelado', '2024-05-07', 3, 'Vuelo internacional', 14, 'Montevideo'),
+        
+        ('2024-05-07', 16, 250000, 'Programado', '2024-05-07', 3, 'Vuelos privado', 10, 'Bogotá'),
+	('2024-05-07', 17, 300000, 'Programado', '2024-05-07', 3, 'Vuelos privado', 11, 'Bogotá'),
+	('2024-05-07', 18, 220000, 'Programado', '2024-05-07', 3, 'Vuelos privado', 12, 'Bogotá'),
+	('2024-05-07', 19, 280000, 'Programado', '2024-05-07', 3, 'Vuelos privado', 13, 'Bogotá'),
+	('2024-05-07', 20, 230000, 'Programado', '2024-05-07', 3, 'Vuelos privado', 14, 'Bogotá'),
+        
+        ('2024-05-07', 21, 150000, 'Activo', '2024-05-07', 1, 'Vuelo internacional', 15, 'Caracas'),
+        ('2024-05-07', 22, 150000, 'Activo', '2024-05-07', 3, 'Vuelo internacional', 13, 'Caracas'),
+        ('2024-05-07', 23, 150000, 'Activo', '2024-05-07', 2, 'Vuelo internacional', 14, 'Caracas'),
+        ('2024-05-07', 24, 150000, 'Activo', '2024-05-07', 1, 'Vuelo internacional', 12, 'Caracas'),
+        ('2024-05-07', 25, 150000, 'Activo', '2024-05-07', 3, 'Vuelo internacional', 15, 'Caracas'),
+        
+        ('2024-05-07', 26, 240000, 'Retrasado', '2024-05-07', 1, 'Turista', 15, 'Brasilia'),
+        ('2024-05-07', 27, 240000, 'Retrasado', '2024-05-07', 3, 'Turista', 13, 'Brasilia'),
+        ('2024-05-07', 28, 240000, 'Retrasado', '2024-05-07', 2, 'Turista', 12, 'Brasilia'),
+        ('2024-05-07', 29, 240000, 'Retrasado', '2024-05-07', 1, 'Turista', 13, 'Brasilia'),
+        ('2024-05-07', 30, 240000, 'Retrasadp', '2024-05-07', 3, 'Turista', 15, 'Brasilia'),
+        
+        ('2024-05-07', 31, 320000,  'Aterrizado', '2024-05-07', 1, 'Vuelo Internacional', 15, 'Brasilia'),
+        ('2024-05-07', 32, 320000, 'Aterrizado', '2024-05-07', 3, 'Vuelo Internacional', 13, 'Brasilia'),
+        ('2024-05-07', 33, 320000, 'Aterrizado', '2024-05-07', 2, 'Vuelo Internacional', 11, 'Brasilia'),
+        ('2024-05-07', 34, 320000, 'Aterrizado', '2024-05-07', 1, 'Vuelo Internacional', 12, 'Brasilia'),
+        ('2024-05-07', 35, 320000, 'Aterrizado', '2024-05-07', 3, 'Vuelo Internacional', 15, 'Brasilia'),
+        
+        ('2024-05-07', 36, 240000,  'Volando', '2024-05-07', 1, 'Turista', 12, 'New York'),
+        ('2024-05-07', 37, 240000, 'Volando', '2024-05-07', 3, 'Turista', 13, 'New York'),
+        ('2024-05-07', 38, 240000, 'Volando', '2024-05-07', 2, 'Turista', 15, 'New York'),
+        ('2024-05-07', 39, 240000, 'Volando', '2024-05-07', 1, 'Turista', 12, 'New York'),
+        ('2024-05-07', 40, 240000, 'Volando', '2024-05-07', 3, 'Turista', 15, 'New York'),
+        
+        ('2024-05-07', 41, 300000, 'Volando', '2024-05-07', 3, 'Vuelo Nacional', 12, 'Cartagena'),
+        ('2024-05-07', 42, 300000, 'Volando', '2024-05-07', 2, 'Vuelo Nacional', 14, 'Cartagena'),
+        ('2024-05-07', 43, 300000, 'Volando', '2024-05-07', 1, 'Vuelo Nacional', 13, 'Cartagena'),
+        ('2024-05-07', 44, 300000, 'Volando', '2024-05-07', 1, 'Vuelo Nacional', 13, 'Cartagena'), 
+        ('2024-05-07', 45, 300000, 'Volando', '2024-05-07', 3, 'Vuelo Nacional', 13, 'Cartagena'), 
+        
+        ('2024-05-07', 46, 200000, 'Volando', '2024-05-07', 3, 'Turista', 5, 'Quito'),
+        ('2024-05-07', 47, 200000, 'Volando', '2024-05-07', 3, 'Turista', 5, 'Quito'),
+        ('2024-05-07', 48, 200000, 'Volando', '2024-05-07', 3, 'Turista', 6, 'Quito'), 
+        ('2024-05-07', 49, 200000, 'Volando', '2024-05-07', 3, 'Turista', 6, 'Quito'), 
+        ('2024-05-07', 50, 200000, 'Volando', '2024-05-07', 3, 'Turista', 5, 'Quito');
+
+INSERT INTO Pasajero (telefono, nombre, apellido, nacionalidad, edad, pasaporte, visa, id_pasajero)
+VALUES  ('123456789', 'Juan', 'Pérez', 'Mexicana', 30, 'ABC123', 'VISA123', 1),
+        ('987654321', 'María', 'González', 'Colombiana', 25, 'XYZ456', 'VISA456', 2);
+
+INSERT INTO Equipaje (peso, cantidad, propietario, estado_equipaje, num_etiqueta, vuelo_asociado, id_equipaje)
+ VALUES 
+	(29.99, 2 , &quot;Juan Mecanico&quot;, &quot;En vuelo&quot;, &quot;A2732&quot;, &quot;Caracas512&quot;, 241516),
+	(50.5, 1, &quot;Sullivan Wasaoski&quot;, &quot;En espera&quot;,&quot;ZA156&quot;, &quot;Perú&quot;, 251515 );
+
+INSERT INTO Pista (id_pista, disponibilidad, tipo, longitud, numero, estado_uso, anchura)
+VALUES  (1, 'Disponible', 'Asfalto', 2500.00, 1, 'Operativa', 30.0),
+	(2, 'No disponible', 'De tierra', 1800.50, 2, 'En mantenimiento', 25.5),
+        (3, 'Disponible', 'Asfalto', 1800.88, 3, 'Abierta', 90.0);
+
+INSERT INTO Vuelo (estado_vuelo, num_vuelo, tipo_vuelo, duracion, origen, destino, horario)
+VALUES  
+	('Retrasado', 'AA1234', 'Vuelo nacional', '01:53:00', 'Bogotá', 'Barranquilla', '2024-05-15 07:30:00 PM'),
+        ('Aterrizado', 'LA4003', 'Vuelo internacional', '04:15:00', 'Bogotá', 'Ciudad de mexico', '2024-11-29 01:45:00 AM'),
+        ('Volando', 'AV9538', 'Vuelo internacional', '03:15:00', 'Quito', 'Ciudad de mexico', '2024-09-26 01:45:00 PM'),
+        ('Cancelado', 'VB771', 'Vuelo internacional', '07:30:00', 'Lima', 'Montevideo', '2024-07-23 05:45:00 AM'),
+        ('Programado', 'VB782', 'Vuelos privado', '07:30:00', 'Asunción', 'Bogotá', '2024-10-29 03:45:00 PM'),
+        ('Embarque', 'VB243', 'Vuelo internacional', '09:30:00', 'BS AS', 'Caracas', '2024-12-7 01:40:00 PM'),
+        ('Cancelado', 'AA3945','Vuelo nacional', '02:50:00', 'Manaos', 'Brasilia', '2024-08-20 02:00:00 PM'),
+        ('Volando', 'AA4321', 'Vuelo privado', '03:00:00', 'Miami', 'New York', '2024-05-30 09:00:00 PM'),
+        ('Volando', 'BB9845', 'Vuelo internacional', '32:00:00', 'Cartagena', 'Canberra', '2024-06-02 08:00:00 AM'),
+        ('Volando', 'AS2222', 'Vuelo Nacional', '00:50:00', 'Quito', 'Cuenca', '2024-07-23 12:20:00 PM');
+
+INSERT INTO Ruta (distancia, destino, origen, duracion_estimada, paises_sobrevolados, aeropuerto_origen, aeropuerto_destino, id_ruta) 
+VALUES  (1500.5, 'Nueva York', 'Los Ángeles', '04:30:00', 'Estados Unidos, Canadá', 'JFK', 'LAX', 1),
+	(1500.5, 'Paris', 'Berlin', '11:39:00', 'Holanda, Belgica, Luxemburgo', 'LCY', 'BER', 2),
+        (800.2, 'Londres', 'París', '02:00:00', 'Reino Unido, Francia', 'LHR', 'CDG', 3),
+        (3162, 'CDMX', 'Bogotá', '04:36:00', 'Panama, Costa Rica, Nicaragua, Guatemala', 'BOG', 'MEX', 4),
+        (3162, 'Lima', 'Asunción', '03:07:00', 'Bolivia', 'LIM', 'ASU', 5),
+        (5188, 'BS AS', 'Caracas', '09:30:00', 'Paraguay, Bolivia, Brasil', 'AEP', 'CCS', 6),
+        (5188, 'Lisboa', 'Lituania', '12:3:00', 'Francia, Alemania, Polonia, Bielorrusia', 'AEP', 'CCS', 7);
+
+INSERT INTO Sala (terminal, tipo_puerta, hora_disponibilidad, capacidad, estado, aerolineas_asignadas, num_puerta, ubicacion, num_sala) 
+VALUES  ('Terminal 1', 'Puerta de embarque', '2024-04-30 12:00:00', 150, 'Disponible', 'Delta, United, American', 10, 'Nivel 1', 1),
+	(&quot;Terminal 2&quot;, &quot;Puerta de salida&quot;, &quot;2024-04-30  14:30:00&quot;,100, &quot;Ocupado&quot;, &quot;Brittish Airways, Lufthansa&quot;, 5, &quot;Nivel 2&quot;, 2);
+
+INSERT INTO Aerolinea(nombre_aerolinea, pais, id_aerolinea)
+VALUES  ('Avianca', 'Colombia', 194603),
+	('LATAM Airlines', 'Chile', 987644),
+        ('Emirates Airlines', 'Emiratos Arabes Unidos', 567892),
+        ('Qtar Airlines', 'Qtar', 875234),
+        ('Helistar', 'Colombia', 245673);
+
+SELECT * FROM Pasajero
+
+
+</sql><current_tab id="1"/></tab_sql></sqlb_project>

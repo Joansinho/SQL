@@ -1,0 +1,167 @@
+Para crear una base de datos se hace de la siguiente forma:
+CREATE DATABASE "(nombre de la base de datos)"
+
+
+------------------------ TABLAS. (TABLE)
+Una tabla es una estructura de datos que se organiza por filas
+y columnas. En base de datos las tablas son las entidades.
+el código para crear una tabla es:
+
+CREATE TABLE (nombre tabla) (
+	"nombre_campo" (TIPO DE DATO),
+	"otro_campo" (TIPO DE DATO)
+);
+
+Las tablas guardan informacion. Los campos son la cabeza 
+de la tabla y nos da informacion de lo que habra en los 
+registros. Y los registros son los datos con los que llenamos 
+las tablas.
+
+
+------------------------ TIPOS DE DATOS.
+los tipos de datos que vamos a almacenar.
+
+INTEGER: Almacena numeros. (edades, numeros de identificacion
+o la cantidad de cosas que hay en un supermercado por 
+ejemplo)
+
+TEXT: Almacena texto. (nombres, correos, descripciones etc)
+
+BLOB: Almacena datos binarios (archivos, imagenes, videos y 
+todo lo relacionado con lo binario)
+
+REAL: Son como los datos flotantes (FLOAT). Valores con "," 
+(porcentajes etc). Almacena menos informacion con menor 
+presicion pero es mas rapido.
+
+NUMERIC: Trabaja con numeros que necesitan precision 
+matematica muy alta (numeros muy grandes, como pi o 
+divisiones grandes). No tiene limite de almacentamiento, mas
+precision y mas lento que REAL.
+
+
+------------------------ CONSULTA SELECT
+hacer una busqueda en una base de datos
+
+SELECT *(todo) FROM(de) tabla_a_consultar, otra_tabla
+
+se pueden consultar dos tablas al mismo tiempo separando
+por coma
+
+
+------------------------ INSERTAR DATOS.
+con esta sentencia insertamos datos a diferentes tablas
+
+INSERT INTO tabla_a_insertar (campos, de la, tabla)
+VALUES ("valores a", "insertar");
+
+se pueden agregar varios elementos poniendo una coma al 
+final de los valores
+
+VALUES ("valores a", "insertar"),
+("otros valores", "a insertar");
+
+
+------------------------ ELIMINANDO DATOS.
+con esta sentencia podemos eliminar los datos de las tablas.
+
+DELETE FROM tabla_delete_datos
+
+
+------------------------ IDENTIFICADORES (PK & FK)
+PRIMARY KEYS & FOREIGN KEYS
+llaves primarias y llaves foraneas
+
+AUTOINCREMENT(AI): propiedad de las claves primarias, 
+campo que se autoincrementara en las tablas para 
+referenciar el id y que cada registro sea unico.
+
+PRIMARY KEY("nombre_PK" AUTOINCREMENT)
+esto va junto al CREATE TABLE en los campos, 
+normalmente al final.
+
+PRIMARY KEY: Identificamos a un campo como unico.
+
+FOREIGN KEY: las foreign keys son llaves que hacen referencia
+a las llaves primarias de otras tablas para relacionarlas y 
+acceder a sus informacion para ser consultadas.
+
+
+------------------------ COLUMNAS Y ALIAS
+se usa por dos motivos. Agregar un nombre mas descriptivo a 
+una tabla 
+AS: nos permite cambiar de manera temporal el nombre de los
+campos en una tabla. 
+SELECT campo_tabla AS alias_campo FROM tabla
+
+EJ: SELECT LastName AS apellido FROM Employees
+
+se pueden cambiar varios campos
+SELECT campo_tabla AS alias_campo, otro_campo AS otro_alias
+
+
+------------------------ ORDER BY.
+clausula que nos permite ordenar por diferentes filtros.
+
+debe ir acompañado de la consulta SELECT
+SELECT campo_consulta FROM tabla_consulta
+ORDER BY campo_a_ordenar
+por defecto los ordena de forma ascendente (menor a mayor)
+
+estos filtros se usan al final del order by para indicar de que 
+manera queremos que sean organizados los registros
+ASC (ascendente)
+DESC (descendente) 
+
+EN CASO QUE SE QUIERA ORGANIZAR POR NOMBRE SE 
+ORGANIZARÁ DE A-Z (ascendente) Y DE Z-A (descendente)
+
+SE PUEDEN ORGANIZAR POR DOS CAMPOS
+ORDER BY primer_campo, segundo_campo 
+
+se ordena asi (menos importante a mas):
+NULL
+NUMEROS
+CARACTERES ESPECIALES
+LETRAS 
+
+cuando se desea que los nulos siempre aparezcan al final
+se declara asi:
+ORDER BY campo ASC NULLS LAST (FIRST para ponerlos de 
+primeras si es de forma descendiente)
+
+ORDER BY RANDOM(): Funcion que permite organizar de forma
+aleatoria.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
